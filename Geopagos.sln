@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geopagos.Presenter", "Geopagos.Presenter\Geopagos.Presenter.csproj", "{827F06CB-36ED-441B-B9C9-1B607DED3D95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geopagos.Repository", "Geopagos.Repository\Geopagos.Repository.csproj", "{17CB7E12-9503-4715-AC64-C7CA753138CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geopagos.Services", "Geopagos.Services\Geopagos.Services.csproj", "{CE1CBCDF-4125-4181-92E1-849166FDAEDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geopagos.Entities", "Geopagos.Entities\Geopagos.Entities.csproj", "{149CDD03-3EB2-4DC8-92C1-DF2E2C84637E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geopagos.Tests", "Geopagos.Tests\Geopagos.Tests.csproj", "{C5D79EE9-B181-4198-93B8-9FAF6B87E7D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geopagos.API", "Geopagos.API\Geopagos.API.csproj", "{B3387809-3D60-4CB8-8B4D-873D474B02DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{827F06CB-36ED-441B-B9C9-1B607DED3D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{827F06CB-36ED-441B-B9C9-1B607DED3D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{827F06CB-36ED-441B-B9C9-1B607DED3D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{827F06CB-36ED-441B-B9C9-1B607DED3D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17CB7E12-9503-4715-AC64-C7CA753138CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17CB7E12-9503-4715-AC64-C7CA753138CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17CB7E12-9503-4715-AC64-C7CA753138CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17CB7E12-9503-4715-AC64-C7CA753138CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE1CBCDF-4125-4181-92E1-849166FDAEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1CBCDF-4125-4181-92E1-849166FDAEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1CBCDF-4125-4181-92E1-849166FDAEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1CBCDF-4125-4181-92E1-849166FDAEDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{149CDD03-3EB2-4DC8-92C1-DF2E2C84637E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{149CDD03-3EB2-4DC8-92C1-DF2E2C84637E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{149CDD03-3EB2-4DC8-92C1-DF2E2C84637E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{149CDD03-3EB2-4DC8-92C1-DF2E2C84637E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D79EE9-B181-4198-93B8-9FAF6B87E7D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D79EE9-B181-4198-93B8-9FAF6B87E7D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D79EE9-B181-4198-93B8-9FAF6B87E7D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D79EE9-B181-4198-93B8-9FAF6B87E7D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3387809-3D60-4CB8-8B4D-873D474B02DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3387809-3D60-4CB8-8B4D-873D474B02DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3387809-3D60-4CB8-8B4D-873D474B02DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3387809-3D60-4CB8-8B4D-873D474B02DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13DC2C27-6994-42C0-A9D8-B088415CCC87}
+	EndGlobalSection
+EndGlobal
