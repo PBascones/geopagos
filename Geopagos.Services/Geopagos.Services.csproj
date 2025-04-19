@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Geopagos.Entities\Geopagos.Entities.csproj" />
+    <ProjectReference Include="..\Geopagos.Repository\Geopagos.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

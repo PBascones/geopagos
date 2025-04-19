@@ -14,5 +14,16 @@
         {
             return SkillLevel * 0.7 + ReactionTime * 0.3;
         }
+
+        public override PlayerSnapshot ToSnapshot()
+        {
+            return new PlayerSnapshot
+            {
+                Name = Name,
+                Gender = Gender.ToString(),
+                SkillLevel = SkillLevel,
+                ReactionTime = ReactionTime
+            };
+        }
     }
 }

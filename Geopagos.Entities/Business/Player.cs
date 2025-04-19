@@ -16,5 +16,6 @@ namespace Geopagos.Entities.Business
         }
 
         public abstract double GetEffectiveScore();
+        public abstract PlayerSnapshot ToSnapshot();
     }
 }

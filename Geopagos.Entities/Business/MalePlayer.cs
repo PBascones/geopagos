@@ -16,5 +16,17 @@
         {
             return SkillLevel * 0.6 + Strength * 0.3 + Speed * 0.1;
         }
+
+        public override PlayerSnapshot ToSnapshot()
+        {
+            return new PlayerSnapshot
+            {
+                Name = Name,
+                Gender = Gender.ToString(),
+                SkillLevel = SkillLevel,
+                Strength = Strength,
+                Speed = Speed
+            };
+        }
     }
 }

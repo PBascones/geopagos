@@ -1,4 +1,4 @@
-﻿namespace Geopagos.Services
+﻿namespace Shared
 {
     public class Class1
     {
