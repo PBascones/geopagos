@@ -6,8 +6,9 @@ namespace Geopagos.Repository.Repositories
 {
     public interface ITournamentRepository
     {
-        Task SaveTournamentResultAsync(TournamentResult result);
         Task<List<TournamentResult>> GetTournamentResultsAsync(DateTime? fromDate, DateTime? toDate, string? gender);
+        Task SaveTournamentResultAsync(TournamentResult result);
+        Task UpdateWinnerAsync(int tournamentId, int winnerSnapshotId);
     }
 
     public class TournamentRepository : ITournamentRepository
@@ -19,20 +20,6 @@ namespace Geopagos.Repository.Repositories
         {
             _dbContext = dbContext;
             _logger = logger;
-        }
-
-        public async Task SaveTournamentResultAsync(TournamentResult result)
-        {
-            try
-            {
-                _dbContext.TournamentResult.Add(result);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error saving tournament result.");
-                throw new Exception("An error occurred while saving the tournament result.", ex);
-            }
         }
 
         public async Task<List<TournamentResult>> GetTournamentResultsAsync(DateTime? fromDate, DateTime? toDate, string? gender)
@@ -55,6 +42,38 @@ namespace Geopagos.Repository.Repositories
             return await query
                 .OrderByDescending(x => x.PlayedDate)
                 .ToListAsync();
+        }
+
+        public async Task SaveTournamentResultAsync(TournamentResult result)
+        {
+            try
+            {
+                _dbContext.TournamentResult.Add(result);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error inserting tournament result.");
+                throw new Exception("An error occurred while inserting the tournament result.", ex);
+            }
+        }
+
+        public async Task UpdateWinnerAsync(int tournamentId, int winnerSnapshotId)
+        {
+            try
+            {
+                var dbTournamentResult = await _dbContext.TournamentResult.FindAsync(tournamentId);
+                if (dbTournamentResult == null)
+                    throw new Exception("Tournament not found.");
+
+                dbTournamentResult.WinnerSnapshotId = winnerSnapshotId;
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating winner.");
+                throw new Exception("Update failed.", ex);
+            }
         }
     }
 }

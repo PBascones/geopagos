@@ -16,6 +16,16 @@ namespace Geopagos.Repository
                 .HasMany(t => t.Players)
                 .WithOne()
                 .HasForeignKey(p => p.TournamentResultId);
+
+            modelBuilder.Entity<TournamentResult>()
+               .HasMany(tr => tr.Players)
+               .WithOne(ps => ps.TournamentResult)
+               .HasForeignKey(ps => ps.TournamentResultId);
+
+            modelBuilder.Entity<TournamentResult>()
+                .HasOne(tr => tr.WinnerSnapshot)
+                .WithMany()
+                .HasForeignKey(tr => tr.WinnerSnapshotId);
         }
     }
 }

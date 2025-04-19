@@ -1,5 +1,6 @@
-﻿using Geopagos.Entities.Business;
+﻿using Geopagos.Presenter.Helpers;
 using Geopagos.Presenter.Models;
+using Geopagos.Services.Base;
 using Geopagos.Services.Interfaces;
 using Geopagos.Shared.Helpers;
 
@@ -14,12 +15,24 @@ namespace Geopagos.Presenter
             _service = service;
         }
 
-        public async Task<List<TournamentResult>> GetTournamentsAsync(DateTime? fromDate, DateTime? toDate, string? gender)
+        public async Task<ServiceResponse<List<TournamentResultModel>>> GetTournamentsAsync(DateTime? fromDate, DateTime? toDate, string? gender)
         {
-            return await _service.GetTournamentsAsync(fromDate, toDate, gender);
+            var sr = new ServiceResponse<List<TournamentResultModel>>();
+
+            var data = await _service.GetTournamentsAsync(fromDate, toDate, gender);
+
+            if (data == null || data.Count == 0)
+            {
+                sr.AddError("No tournaments found for the specified criteria.");
+                return sr;
+            }
+
+            sr.Data = data.Select(x => x.ToModel()).ToList();
+
+            return sr;
         }
 
-        public async Task<TournamentResult> SimulateTournamentAsync(List<PlayerModel> players)
+        public async Task<ServiceResponse> SimulateTournamentAsync(List<PlayerModel> players)
         {
             var mappedPlayers = players
                 .Select(PlayerFactory.Create)

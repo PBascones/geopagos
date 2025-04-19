@@ -8,7 +8,7 @@ namespace Geopagos.Entities.Business
         public DateTime PlayedDate { get; set; }
         public string Gender { get; set; }
 
-        public int WinnerSnapshotId { get; set; }
+        public int? WinnerSnapshotId { get; set; }
 
         [ForeignKey(nameof(WinnerSnapshotId))]
         public virtual PlayerSnapshot WinnerSnapshot { get; set; }

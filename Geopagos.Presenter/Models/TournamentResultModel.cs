@@ -2,8 +2,10 @@
 {
     public class TournamentResultModel
     {
-        public string WinnerName { get; set; }
+        public int Id { get; set; }
+        public DateTime PlayedDate { get; set; }
         public string Gender { get; set; }
-        public double FinalScore { get; set; }
+        public string WinnerName { get; set; }
+        public List<PlayerModel> Players { get; set; }
     }
 }

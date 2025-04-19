@@ -7,7 +7,7 @@ CREATE TABLE TournamentResult (
     Id INT PRIMARY KEY IDENTITY(1,1),
     PlayedDate DATETIME NOT NULL,
     Gender VARCHAR(50) NOT NULL,
-    WinnerSnapshotId INT NOT NULL
+    WinnerSnapshotId INT
 );
 
 -- Related snapshots of players

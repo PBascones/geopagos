@@ -14,5 +14,7 @@ namespace Geopagos.Presenter.Models
 
         // Female fields
         public int? ReactionTime { get; set; }
+
+        public bool IsWinner { get; set; }
     }
 }

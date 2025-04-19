@@ -1,5 +1,6 @@
 ﻿using Geopagos.Entities.Business;
 using Geopagos.Repository.Repositories;
+using Geopagos.Services.Base;
 using Geopagos.Services.Interfaces;
 
 namespace Geopagos.Services
@@ -13,45 +14,56 @@ namespace Geopagos.Services
             _tournamentRepository = tournamentRepository;
         }
 
-        public async Task<TournamentResult> SimulateAndStoreTournamentAsync(List<Player> players)
-        {
-            if (players == null || players.Count < 2)
-                throw new ArgumentException("At least two players are required.");
-
-            var tournament = new Tournament
-            {
-                Players = players,
-            };
-
-            // Simulate the tournament and determine the winner
-            var winner = RunTournament(players);
-
-            var result = new TournamentResult
-            {
-                PlayedDate = DateTime.UtcNow,
-                Gender = players.First().Gender.ToString(),
-                Players = players.Select(p => p.ToSnapshot()).ToList()
-            };
-
-            try
-            {
-                await _tournamentRepository.SaveTournamentResultAsync(result);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while saving the tournament result.", ex);
-            }
-
-            var winnerSnapshot = result.Players.First(s => s.Name == winner.Name);
-            result.WinnerSnapshotId = winnerSnapshot.Id;
-
-            return result;
-        }
-
         public async Task<List<TournamentResult>> GetTournamentsAsync(DateTime? fromDate, DateTime? toDate, string? gender)
         {
             return await _tournamentRepository.GetTournamentResultsAsync(fromDate, toDate, gender);
+        }
+
+        public async Task<ServiceResponse> SimulateAndStoreTournamentAsync(List<Player> players)
+        {
+            var sr = new ServiceResponse();
+
+            if (players == null || players.Count < 2)
+                throw new ArgumentException("At least two players are required.");
+
+            try
+            {
+                var tournament = new Tournament
+                {
+                    Players = players,
+                };
+
+                var winner = RunTournament(players);
+
+                // Map each Player to its corresponding Snapshot
+                var playerToSnapshotMap = players.ToDictionary(
+                    p => p,
+                    p => p.ToSnapshot()
+                );
+
+                var result = new TournamentResult
+                {
+                    PlayedDate = DateTime.UtcNow,
+                    Gender = players.First().Gender.ToString(),
+                    Players = playerToSnapshotMap.Values.ToList()
+                };
+
+                await _tournamentRepository.SaveTournamentResultAsync(result);
+
+                // After saving, the snapshot IDs are populated
+                result.WinnerSnapshotId = playerToSnapshotMap[winner].Id;
+
+                // Update winner ID
+                await _tournamentRepository.UpdateWinnerAsync(result.Id, result.WinnerSnapshotId.Value);
+
+                sr.ReturnValue = result.Id;
+            }
+            catch (Exception ex)
+            {
+                sr.AddError($"An error occurred while saving the tournament result: {ex.InnerException?.InnerException}");
+            }
+
+            return sr;
         }
 
         public Player RunTournament(List<Player> players)
