@@ -28,11 +28,6 @@ namespace Geopagos.Services
 
             try
             {
-                var tournament = new Tournament
-                {
-                    Players = players,
-                };
-
                 var winner = RunTournament(players);
 
                 // Map each Player to its corresponding Snapshot
