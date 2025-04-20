@@ -60,7 +60,7 @@ namespace Geopagos.Services
             }
             catch (Exception ex)
             {
-                sr.AddError($"An error occurred while saving the tournament result: {ex.InnerException?.InnerException}");
+                sr.AddError($"An error occurred while saving the tournament result: {ex.InnerException?.Message ?? ex.Message}");
             }
 
             return sr;
