@@ -52,6 +52,17 @@ This project simulates a single-elimination tennis tournament using object-orien
 - Luck factor added to each match to make outcomes more realistic and unpredictable.
 - No ties allowed.
 
+### 🧠 Object-Oriented Design
+
+The solution follows core OOP principles:
+
+- Uses **inheritance and polymorphism** (`Player`, `MalePlayer`, `FemalePlayer`)
+- Applies **clean architecture** with clear separation of layers
+- Follows **SRP** and avoids domain leaks into presentation
+- Business logic is **modular, testable, and extensible**
+
+> Designed to be easy to understand, maintain, and scale.
+
 ---
 
 ## 🏗️ Project Structure
@@ -155,9 +166,6 @@ Geopagos.sln
 
 ---
 
-
----
-
 ## 🧪 Testing
 
 You can use the following sample JSONs to test the `POST /api/tournament` endpoint directly from Swagger or Postman.
@@ -214,6 +222,7 @@ You can use the following sample JSONs to test the `POST /api/tournament` endpoi
     "speed": 83
   }
 ]
+```
 
 ### 📥 Testing via `curl`
 
@@ -221,11 +230,10 @@ You can also test the tournament retrieval using the following curl command:
 
 ```bash
 curl -X GET "https://localhost:7028/api/tournament?from=2025-04-19&to=2025-04-21&gender=Male" -H "accept: application/json"
+```
 
 Replace the port if needed
 
-
-```
 
 
 ## ⚙️ Additional Features
@@ -243,7 +251,7 @@ Replace the port if needed
 - Integration tests (intentionally skipped for scope clarity)
 - Deployment to Azure / Docker
 
-> Integration tests were intentionally skipped in this stage to keep the focus on core business logic, architecture, and testability. The system is fully covered with unit tests.
+> Integration tests were intentionally skipped in this stage to keep the focus on core business logic, architecture, and testability. The core logic is thoroughly covered with unit tests.
 
 ---
 
@@ -251,3 +259,8 @@ Replace the port if needed
 
 **Pablo Bascones Busch**  
 Systems Engineer who built this project fueled by chocolate, curiosity, and the hope of joining Geopagos very soon ☕🚀
+
+---
+
+```markdown
+Thanks for reviewing this challenge – I look forward to hearing from you!
