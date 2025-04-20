@@ -1,12 +1,14 @@
-﻿using Geopagos.Presenter;
+﻿using Geopagos.API.Controllers.Base;
+using Geopagos.Presenter;
 using Geopagos.Presenter.Models;
+using Geopagos.Services.Base;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Geopagos.API.Controllers
 {
     [ApiController]
     [Route("api/tournaments")]
-    public class TournamentController : ControllerBase
+    public class TournamentController : BaseApiController
     {
         private readonly ITournamentPresenter _presenter;
 
@@ -16,30 +18,22 @@ namespace Geopagos.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(List<TournamentResultModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ServiceError>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetTournaments(
             [FromQuery] DateTime? from,
             [FromQuery] DateTime? to,
             [FromQuery] string? gender)
         {
-            var results = await _presenter.GetTournamentsAsync(from, to, gender);
-            return Ok(results);
+            return HandleResponse(await _presenter.GetTournamentsAsync(from, to, gender));
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ServiceError>), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> SimulateTournament([FromBody] List<PlayerModel> players)
         {
-            if (players == null || players.Count < 2)
-                return BadRequest("At least two players are required.");
-
-            try
-            {
-                var result = await _presenter.SimulateTournamentAsync(players);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error processing tournament: {ex.Message}");
-            }
+            return HandleResponse(await _presenter.SimulateTournamentAsync(players));
         }
     }
 }

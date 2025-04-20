@@ -1,6 +1,7 @@
 ﻿using Geopagos.Presenter.Helpers;
 using Geopagos.Presenter.Models;
 using Geopagos.Services.Base;
+using Geopagos.Services.Constants;
 using Geopagos.Services.Interfaces;
 using Geopagos.Shared.Helpers;
 
@@ -23,7 +24,7 @@ namespace Geopagos.Presenter
 
             if (data == null || data.Count == 0)
             {
-                sr.AddError("No tournaments found for the specified criteria.");
+                sr.AddError(ErrorMessages.NoTournamentsFound);
                 return sr;
             }
 

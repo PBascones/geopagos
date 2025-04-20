@@ -1,6 +1,7 @@
 ﻿using Geopagos.Entities.Business;
 using Geopagos.Repository.Repositories;
 using Geopagos.Services.Base;
+using Geopagos.Services.Constants;
 using Geopagos.Services.Interfaces;
 
 namespace Geopagos.Services
@@ -24,7 +25,7 @@ namespace Geopagos.Services
             var sr = new ServiceResponse();
 
             if (players == null || players.Count < 2)
-                throw new ArgumentException("At least two players are required.");
+                throw new ArgumentException(ErrorMessages.TournamentPlayersTooFew);
 
             try
             {
@@ -55,7 +56,7 @@ namespace Geopagos.Services
             }
             catch (Exception ex)
             {
-                sr.AddError($"An error occurred while saving the tournament result: {ex.InnerException?.Message ?? ex.Message}");
+                sr.AddError($"{ErrorMessages.SaveError}: {ex.InnerException?.Message ?? ex.Message}");
             }
 
             return sr;
@@ -65,7 +66,7 @@ namespace Geopagos.Services
         {
             // Validate input: a tournament must have at least one player
             if (players == null || players.Count == 0)
-                throw new ArgumentException("Tournament must have at least one player.");
+                throw new ArgumentException(ErrorMessages.TournamentEmpty);
 
             var rng = new Random();
 
