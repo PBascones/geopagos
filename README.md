@@ -255,12 +255,11 @@ Replace the port if needed
 
 ---
 
-## 🙋 Author
+## 👨‍💻 Author
 
 **Pablo Bascones Busch**  
 Systems Engineer who built this project fueled by chocolate, curiosity, and the hope of joining Geopagos very soon ☕🚀
 
 ---
 
-```markdown
-Thanks for reviewing this challenge – I look forward to hearing from you!
+🙏 Thanks for reviewing this challenge –  I look forward to hearing from you!
