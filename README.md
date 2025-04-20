@@ -13,7 +13,7 @@ This project simulates a single-elimination tennis tournament using object-orien
 - [🧪 Testing](#-testing)
 - [⚙️ Additional Features](#️additional-features)
 - [🚫 Features Not Implemented](#features-not-implemented)
-- [🙋 Author](#-author)
+- [👨‍💻 Author](#-author)
 
 ---
 
