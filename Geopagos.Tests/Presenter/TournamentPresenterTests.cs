@@ -78,11 +78,14 @@ namespace Geopagos.Tests.Presenter
         [Fact]
         public async Task GetTournamentsAsync_ShouldReturnError_WhenNoResults()
         {
+            // Arrange
             _serviceMock.Setup(s => s.GetTournamentsAsync(null, null, null))
                         .ReturnsAsync(new List<TournamentResult>());
 
+            // Act
             var result = await _presenter.GetTournamentsAsync(null, null, null);
 
+            // Assert
             Assert.False(result.Status);
             Assert.Single(result.Errors);
             Assert.Contains("No tournaments found", result.Errors[0].ErrorMessage);

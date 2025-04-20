@@ -49,17 +49,21 @@ namespace Geopagos.Tests.Services
         [InlineData(1)]
         public async Task SimulateAndStoreTournamentAsync_ShouldThrow_WhenPlayerCountInvalid(int count)
         {
+            // Arrange
             var players = new List<Player>();
 
+            // Act
             for (int i = 0; i < count; i++)
                 players.Add(new FemalePlayer($"Player{i}", 80, 90));
 
+            // Assert
             await Assert.ThrowsAsync<ArgumentException>(() => _service.SimulateAndStoreTournamentAsync(players));
         }
 
         [Fact]
         public async Task GetTournamentsAsync_ShouldCallRepositoryAndReturnResults()
         {
+            // Arrange
             var fakeData = new List<TournamentResult>
             {
                 new TournamentResult { Id = 1, Gender = "Female", PlayedDate = DateTime.UtcNow }
@@ -68,8 +72,10 @@ namespace Geopagos.Tests.Services
             _repoMock.Setup(r => r.GetTournamentResultsAsync(null, null, null))
                 .ReturnsAsync(fakeData);
 
+            // Act
             var result = await _service.GetTournamentsAsync(null, null, null);
 
+            // Assert
             Assert.NotNull(result);
             Assert.Single(result);
         }
@@ -99,12 +105,13 @@ namespace Geopagos.Tests.Services
         [Fact]
         public async Task SimulateAndStoreTournamentAsync_ShouldCallUpdateWinnerWithCorrectId()
         {
+            // Arrange
             int winnerId = -1;
 
             _repoMock.Setup(r => r.SaveTournamentResultAsync(It.IsAny<TournamentResult>()))
                 .Callback<TournamentResult>(r =>
                 {
-                    // Simular que se asignaron IDs post-insert
+                    // Simulate post-inserts ids
                     int id = 1;
                     foreach (var p in r.Players)
                         p.Id = id++;
