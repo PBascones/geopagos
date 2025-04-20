@@ -6,13 +6,13 @@ This project simulates a single-elimination tennis tournament using object-orien
 
 ## 📚 Table of Contents
 
-- [✅ Requirements Met](#✅-requirements-met)
-- [🏗️ Project Structure](#️project-structure)
+- [✅ Requirements Met](#-requirements-met)
+- [🏗️ Project Structure](#-project-structure)
 - [🧪 How to Run](#-how-to-run)
-- [📡 API Endpoints](#api-endpoints)
+- [📡 API Endpoints](#-api-endpoints)
 - [🧪 Testing](#-testing)
-- [⚙️ Additional Features](#️additional-features)
-- [🚫 Features Not Implemented](#features-not-implemented)
+- [⚙️ Additional Features](#-additional-features)
+- [🚫 Features Not Implemented](#-features-not-implemented)
 - [👨‍💻 Author](#-author)
 
 ---
