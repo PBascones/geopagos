@@ -34,7 +34,10 @@ namespace Geopagos.Repository.Repositories
                 query = query.Where(x => x.PlayedDate >= fromDate.Value);
 
             if (toDate.HasValue)
-                query = query.Where(x => x.PlayedDate <= toDate.Value);
+            {
+                toDate = toDate.Value.AddDays(1);
+                query = query.Where(x => x.PlayedDate < toDate.Value);
+            }
 
             if (!string.IsNullOrWhiteSpace(gender))
                 query = query.Where(x => x.Gender == gender);

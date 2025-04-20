@@ -1,4 +1,8 @@
 -- Drop existing tables if needed
+IF EXISTS(SELECT 1 FROM sys.objects WHERE OBJECT_ID = OBJECT_ID('TournamentResult'))
+BEGIN
+    ALTER TABLE TournamentResult DROP CONSTRAINT IF EXISTS FK_TournamentResult_Winner;
+END;
 DROP TABLE IF EXISTS PlayerSnapshot;
 DROP TABLE IF EXISTS TournamentResult;
 

@@ -49,8 +49,8 @@ This project simulates a single-elimination tennis tournament using object-orien
 - Gender-specific logic:
   - Male: `Skill + Strength + Speed`
   - Female: `Skill + ReactionTime`
+- Luck factor added to each match to make outcomes more realistic and unpredictable.
 - No ties allowed.
-- Deterministic and configurable simulation.
 
 ---
 
@@ -214,6 +214,17 @@ You can use the following sample JSONs to test the `POST /api/tournament` endpoi
     "speed": 83
   }
 ]
+
+### 📥 Testing via `curl`
+
+You can also test the tournament retrieval using the following curl command:
+
+```bash
+curl -X GET "https://localhost:7028/api/tournament?from=2025-04-19&to=2025-04-21&gender=Male" -H "accept: application/json"
+
+Replace the port if needed
+
+
 ```
 
 

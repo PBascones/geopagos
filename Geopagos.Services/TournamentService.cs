@@ -67,6 +67,8 @@ namespace Geopagos.Services
             if (players == null || players.Count == 0)
                 throw new ArgumentException("Tournament must have at least one player.");
 
+            var rng = new Random();
+
             // Tournament simulation proceeds in rounds until a single winner remains
             while (players.Count > 1)
             {
@@ -85,10 +87,18 @@ namespace Geopagos.Services
                     }
                     else
                     {
+                        var score1 = player1.GetEffectiveScore();
+                        var score2 = player2.GetEffectiveScore();
+
+                        // Add "luck" to both players
+                        var luck1 = rng.NextDouble() * 10; // 0 to 10
+                        var luck2 = rng.NextDouble() * 10;
+
+                        var final1 = score1 + luck1;
+                        var final2 = score2 + luck2;
+
                         // Simulate the match and determine the winner by effective score
-                        var winner = player1.GetEffectiveScore() >= player2.GetEffectiveScore()
-                            ? player1
-                            : player2;
+                        var winner = final1 >= final2 ? player1 : player2;
 
                         nextRound.Add(winner);
                     }
